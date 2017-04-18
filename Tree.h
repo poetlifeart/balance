@@ -41,10 +41,9 @@ template< typename NODETYPE >
 Tree< NODETYPE >::Tree(double d) 
 { 
 
-           plot = new plotter(3000, 3000);
+   plot = new plotter(3000, 3000);
            
-        
-         dimension=d;
+   dimension=d;
              
             
             // plot it
@@ -101,8 +100,7 @@ void Tree< NODETYPE >::insertNodeHelper(
 
     TreeNode< NODETYPE > base( 0);
   
-  preOrderHelper( rootPtr, 0, 1500, 2500, 0, "bst" ); 
-  //  cout<<endl;
+    preOrderHelper( rootPtr, 0, 1500, 2500, 0, "bst" ); 
 
     troot=&base;
 
@@ -111,13 +109,10 @@ void Tree< NODETYPE >::insertNodeHelper(
 
     tree_to_vine (  troot );
 
- // preOrderHelper( rootPtr, 0, 1500, 2500, 0 ); 
-
 
     troot->rightPtr=this->rootPtr;
  
     vine_to_tree (  troot,  dimension );
-  
  
     } 
 
@@ -195,7 +190,7 @@ int flag=0;
       child->rightPtr = scanner->leftPtr;
       scanner->leftPtr = child;
    
-      //  cout<<endl;
+      
    }  // end for
    
   return next;
@@ -235,8 +230,7 @@ next=  compression (  next, m /=2 );
          
    }
    
-       preOrderHelper( next->rightPtr, 0, 1500, 2500, 0, "dsw" ); 
-    
+ preOrderHelper( next->rightPtr, 0, 1500, 2500, 0, "dsw" ); 
     
 }
 
@@ -251,28 +245,25 @@ void Tree< NODETYPE >::preOrderHelper( TreeNode< NODETYPE > *ptr, double d, doub
 	cout << ptr->data << ' '; // process node   
 	
 	
-	       if(d !=0){
+	 if(d !=0){
 		
-	     plot->plot( xcorr, ycorr, 6, s, d, depth, stg);
+       plot->plot( xcorr, ycorr, 6, s, d, depth, stg);
 	     
 	     
-	     if (d==-1)
-	   {
-		  xcorr=xcorr-(abs(d))*3000/(s*depth);
+	  if (d==-1)
+	{
+	    xcorr=xcorr-(abs(d))*3000/(s*depth);
 	    ycorr=ycorr-(abs(d))*3000/(s*depth);
 	   }
 	   else{
 	     
 	   xcorr= xcorr+(abs(d))*3000/(s*depth);
-	   ycorr= ycorr-(abs(d))*3000/(s*depth);
-			  
+	   ycorr= ycorr-(abs(d))*3000/(s*depth);		  
              
     }
     }
 		      
-    preOrderHelper( ptr->leftPtr, -1, xcorr, ycorr, depth+1, stg ); // traverse left subtree 
-    
-	   
+    preOrderHelper( ptr->leftPtr, -1, xcorr, ycorr, depth+1, stg ); // traverse left subtree    
      
     preOrderHelper( ptr->rightPtr, 1,  xcorr, ycorr, depth+1, stg ); // traverse right subtree
     
