@@ -1,14 +1,7 @@
-
-
 #include "plotter.h"
 #include "bitmap.h"
- #include <thread>
-
+#include <thread>
 #include <iostream>
-
- 
- 
-     //This function will be called from a thread
 
 
 // quick function to make a pixel given constituent colors
