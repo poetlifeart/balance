@@ -18,7 +18,7 @@ public:
 
  TreeNode< NODETYPE > * compression(TreeNode< NODETYPE >  *, int );
     double xcor = 1500;
-	double ycor=2500;  
+    double ycor=2500;  
     double dimension;
  
    void vine_to_tree ( TreeNode< NODETYPE > * , int );
@@ -41,13 +41,10 @@ template< typename NODETYPE >
 Tree< NODETYPE >::Tree(double d) 
 { 
 
-           plot = new plotter(3000, 3000);
+   plot = new plotter(3000, 3000);
            
-        
-         dimension=d;
-             
-            
-            // plot it
+   dimension=d;
+        // plot it
       
    rootPtr = 0; // indicate tree is initially empty 
  
@@ -101,23 +98,17 @@ void Tree< NODETYPE >::insertNodeHelper(
 
     TreeNode< NODETYPE > base( 0);
   
-  preOrderHelper( rootPtr, 0, 1500, 2500, 0, "bst" ); 
-  //  cout<<endl;
+    preOrderHelper( rootPtr, 0, 1500, 2500, 0, "bst" ); 
 
     troot=&base;
 
     troot->rightPtr=rootPtr;
 
-
     tree_to_vine (  troot );
-
- // preOrderHelper( rootPtr, 0, 1500, 2500, 0 ); 
-
 
     troot->rightPtr=this->rootPtr;
  
     vine_to_tree (  troot,  dimension );
-  
  
     } 
 
@@ -131,7 +122,7 @@ void Tree< NODETYPE >:: tree_to_vine (  TreeNode< NODETYPE > *root )
 
   
 
-    int flag=0;
+   int flag=0;
    vineTail = root;
    remainder = vineTail->rightPtr;
     
@@ -142,7 +133,7 @@ void Tree< NODETYPE >:: tree_to_vine (  TreeNode< NODETYPE > *root )
        
       {    flag=1;
 	  
-	  vineTail = remainder;
+	 vineTail = remainder;
          remainder = remainder->rightPtr;
        
 
@@ -154,7 +145,6 @@ void Tree< NODETYPE >:: tree_to_vine (  TreeNode< NODETYPE > *root )
          remainder->leftPtr = tempPtr->rightPtr;
          tempPtr->rightPtr = remainder;
          remainder = tempPtr;
-      //    cout<<"tmpr  "<<tempPtr->leftPtr;
          vineTail->rightPtr = tempPtr;
          
          
@@ -164,7 +154,6 @@ void Tree< NODETYPE >:: tree_to_vine (  TreeNode< NODETYPE > *root )
 	  rootPtr=tempPtr;  
 //	  flag=1; 
 	  }       
-      
    }
   
 }
@@ -195,7 +184,7 @@ int flag=0;
       child->rightPtr = scanner->leftPtr;
       scanner->leftPtr = child;
    
-      //  cout<<endl;
+      
    }  // end for
    
   return next;
@@ -233,10 +222,9 @@ while (m>1)
 next=  compression (  next, m /=2 );
 //preOrderHelper(  next->rightPtr );
          
-   }
+ }
    
-       preOrderHelper( next->rightPtr, 0, 1500, 2500, 0, "dsw" ); 
-    
+ preOrderHelper( next->rightPtr, 0, 1500, 2500, 0, "dsw" ); 
     
 }
 
@@ -251,37 +239,30 @@ void Tree< NODETYPE >::preOrderHelper( TreeNode< NODETYPE > *ptr, double d, doub
 	cout << ptr->data << ' '; // process node   
 	
 	
-	       if(d !=0){
+	 if(d !=0){
 		
-	     plot->plot( xcorr, ycorr, 6, s, d, depth, stg);
+       plot->plot( xcorr, ycorr, 6, s, d, depth, stg);
 	     
 	     
-	     if (d==-1)
-	   {
-		  xcorr=xcorr-(abs(d))*3000/(s*depth);
+	  if (d==-1)
+	{
+	    xcorr=xcorr-(abs(d))*3000/(s*depth);
 	    ycorr=ycorr-(abs(d))*3000/(s*depth);
 	   }
 	   else{
 	     
 	   xcorr= xcorr+(abs(d))*3000/(s*depth);
-	   ycorr= ycorr-(abs(d))*3000/(s*depth);
-			  
+	   ycorr= ycorr-(abs(d))*3000/(s*depth);		  
              
-    }
-    }
+ }
+ }
 		      
-    preOrderHelper( ptr->leftPtr, -1, xcorr, ycorr, depth+1, stg ); // traverse left subtree 
-    
-	   
+    preOrderHelper( ptr->leftPtr, -1, xcorr, ycorr, depth+1, stg ); // traverse left subtree    
      
     preOrderHelper( ptr->rightPtr, 1,  xcorr, ycorr, depth+1, stg ); // traverse right subtree
     
    } // end if
 } // end function preOrderHelper
-
-
-
-
 
 
 

@@ -1,14 +1,7 @@
-
-
 #include "plotter.h"
 #include "bitmap.h"
- #include <thread>
-
+#include <thread>
 #include <iostream>
-
- 
- 
-     //This function will be called from a thread
 
 
 // quick function to make a pixel given constituent colors
@@ -48,46 +41,31 @@ plotter::~plotter()
 
 void plotter::plot( double x, double y, double w, double h, double direction, double depth, string stg) const
 {
-
- 
-     
-
-         //Join the threads with the main thread
-       
-    // get filename, print message
     string filename = stg+"tree.tga";
- //   cout << "Drawing " << filename << "... " << flush;
+
     
-    // compute each pixel in turn
     
-   
-       for(int col = 0; col < b->width/(h*depth); ++col) {
-       	  double Y =y-col;
+    
+    for(int col = 0; col < b->width/(h*depth); ++col) 
+     
+       	double Y =y-col;
+ 
     for(int r =0; r <30 ; ++r) {
-    
-       
-            // compute coordinates on Argand diagram
-            double X =x+(direction*col+r);
-          
-           
-            
-            // perform time-escape calculation
-           
-          
+ 
+         double X =x+(direction*col+r);
         
-     //   this->b->putpixel(col, 600 , colors[esc]);
-            int    esc = 5  ;    
+         
+          int    esc = 5  ;    
             
-            if (col > b->width/(h*depth)*0.90 ) esc=20;
-            this->b->putpixel(X, Y, colors[esc]);
+         if (col > b->width/(h*depth)*0.90 ) esc=20;
+         this->b->putpixel(X, Y, colors[esc]);
             
         }
         
     }
-  //  cout << "saving" << flush;
+
     b->save(filename);
-       cout << endl;
-       
+       cout << endl;    
    
 }
 
