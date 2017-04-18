@@ -47,6 +47,8 @@ void plotter::plot( double x, double y, double w, double h, double direction, do
     
     
     for(int col = 0; col < b->width/(h*depth); ++col) 
+    {
+	
      
        	double Y =y-col;
  
