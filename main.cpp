@@ -1,9 +1,9 @@
 
 #include <iostream>
-using namespace std;
 #include<array>
 #include <iomanip>
 using std::setprecision;
+using namespace std;
 
 #include "Tree.h" // Tree class definition
 
